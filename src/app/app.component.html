@@ -1,1 +1,6 @@
 <h1>Hello {{ title() }}!</h1>
+<ul>
+  <li *ngFor="let item of forms()">
+    {{ item.title }}
+  </li>
+</ul>
