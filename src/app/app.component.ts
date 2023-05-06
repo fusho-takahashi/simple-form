@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
+import { environment } from '../environments/environment';
 
 type Forms = {
   title: string;
@@ -20,7 +21,7 @@ export class AppComponent implements OnInit {
   http = inject(HttpClient);
 
   async ngOnInit(): Promise<void> {
-    const res = await firstValueFrom(this.http.get<{ results: Forms[] }>('http://localhost:8787/api/forms'));
+    const res = await firstValueFrom(this.http.get<{ results: Forms[] }>(`${environment.api}/forms`));
     this.forms.set(res.results);
   }
 }
